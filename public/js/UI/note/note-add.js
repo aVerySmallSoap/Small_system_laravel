@@ -34,6 +34,9 @@ function refreshUI(data){
     let text = document.createElement('input');
     check.type = "checkbox";
     check.value = data.parent;
+    check.addEventListener('click', e=> {
+        isChecked(e);
+    })
     text.type = "text";
     text.className = "text-edit";
     text.value = data.content;

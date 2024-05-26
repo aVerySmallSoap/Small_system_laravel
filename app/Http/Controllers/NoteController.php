@@ -70,4 +70,12 @@ class NoteController extends Controller
     function collection(){
         return view('collection', ['notes' => Header::all()]);
     }
+
+    function tick(Request $request){
+        Note::where('header_id', $request['parent'])
+            ->where('note_sequence', $request['input'])
+            ->update([
+                'note_isFinished' => $request['value']
+            ]);
+    }
 }

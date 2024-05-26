@@ -50,24 +50,21 @@ function actions(parent){
     notes.id = "context-note";
     notes.setAttribute('focusable', 'true');
     notes.onclick = function (e){
-        if(!document.documentURI.includes('/notes'))
         document.location.href = '/notes'
     };
-    if(!document.documentURI.includes('/archives')){
+    if(!document.documentURI.includes('/archives/1')){
         parent.append(archives);
     }
     archives.innerText = "Archives";
     archives.id = "context-archive";
     archives.setAttribute('focusable', 'true');
     archives.onclick = function (e){
-        if(!document.documentURI.includes('/archives'))
-        document.location.href = '/archives'
+        document.location.href = '/archives/1'
     };
     logout.innerText = "Logout";
     logout.id = "context-logout";
     logout.setAttribute('focusable', 'true');
     logout.onclick = function (e){
-        if(!document.documentURI.includes('/home'))
         document.location.href = '/home'
     };
     parent.append(logout);

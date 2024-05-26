@@ -87,6 +87,7 @@ body{
 
 .action-row{
     flex: 1 0 100%;
+    padding: .4rem 0 .4rem 0;
 }
 
 button[id*="btn-"]{
@@ -114,6 +115,11 @@ button[id*="btn-"]{
 #btn-delete:hover{
     background-color: darkred;
     color: white;
+}
+
+.note-done{
+    text-decoration: line-through;
+    color: grey;
 }
 
 @keyframes on-add {

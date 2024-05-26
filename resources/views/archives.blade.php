@@ -14,13 +14,15 @@
 
     <div class="table-container">
         <table id="table-archive">
+            <thead>
+                <tr>
+                    <td>Header</td>
+                    <td>Message</td>
+                    <td>Finished</td>
+                    <td>Archived Date</td>
+                </tr>
+            </thead>
             <tbody>
-            <tr>
-                <th>Header</th>
-                <th>Message</th>
-                <th>Finished</th>
-                <th>Archived Date</th>
-            </tr>
             @foreach($notes as $note)
                 <tr>
                     <td>{{$note->header_id}}</td>
@@ -31,6 +33,18 @@
             @endforeach
             </tbody>
         </table>
+        <div class="pagination">
+            <span class="view">Total number of notes: {{$count->notes}}</span>
+            @if($prev != 0)
+                <div class="prev" onclick="document.location.href = '/archives/{{$prev}}'">prev</div>
+            @endif
+            @if($next != 1)
+                <div class="next" @if($page == 1) style="margin-left: auto;" @endif
+                     onclick="document.location.href = '/archives/{{$next}}'">
+                    next
+                </div>
+            @endif
+        </div>
     </div>
 <x-small-setting/>
 

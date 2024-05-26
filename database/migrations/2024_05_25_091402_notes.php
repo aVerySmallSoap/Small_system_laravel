@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -16,7 +17,6 @@ return new class extends Migration
             $table->string('title')->index('idx_header_title');
             $table->timestamp('created_At');
         });
-
         Schema::create('notes', function (Blueprint $table) {
             $table->integer('header_id');
             $table->integer('note_sequence');
@@ -26,19 +26,46 @@ return new class extends Migration
                 ->references('header_id')
                 ->on('headers');
         });
-
-        Schema::create('update_history', function (Blueprint $table){
-            $table->integer('header_id');
-            $table->longText('message');
-            $table->boolean('note_isFinished');
-            $table->timestamp('updated_At');
-        });
         Schema::create('archived_notes', function (Blueprint $table){
             $table->integer('header_id');
             $table->longText('message');
             $table->boolean('note_isFinished');
             $table->timestamp('archived_At');
         });
+        DB::statement("
+            CREATE TRIGGER `notes_BEFORE_DELETE` BEFORE DELETE ON `notes`
+            FOR EACH ROW
+            BEGIN
+	            insert into archived_notes (`header_id`,`message`, `note_isFinished`, `archived_At`) values (
+		        old.header_id, old.message, old.note_isFinished, current_timestamp()
+                );
+            END"
+        );
+        DB::statement("
+            CREATE TRIGGER `notes_BEFORE_UPDATE` BEFORE UPDATE ON `notes`
+            FOR EACH ROW
+            BEGIN
+	            insert into archived_notes (`header_id`,`message`, `note_isFinished`,`archived_At`) values (
+		        old.header_id, old.message, old.note_isFinished, current_timestamp()
+                );
+            END"
+        );
+        DB::statement(
+            'CREATE PROCEDURE `getAttachedNotes`(IN header_id int)
+            begin
+	        select * from notes where notes.header_id = header_id;
+            end'
+        );
+        DB::statement('
+            CREATE PROCEDURE `paginate_archive`(IN v_limit int, IN v_offset int)
+            BEGIN
+                select * from archived_notes limit v_limit offset v_offset;
+            END
+        ');
+        DB::statement('
+            CREATE VIEW `number_of_archived` AS
+            select count(*) from archived_notes as notes;
+        ');
     }
 
     /**
