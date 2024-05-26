@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Tenali Ramakrishna';
+    src: url("../resources/fonts/TenaliRamakrishna-Regular.ttf");
+}
+
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+
+:root{
+    --app-primary: #50be89;
+    --app-primary-rgb: rgb(80, 190, 137);
+    --app-seconday: #97e7c1 ;
+    --app-seconday-rgb: rgb(151, 231, 193);
+    --app-accent: #5eedab;
+    --app-accent-rgb: rgb(94, 237, 171);
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Tenali Ramakrishna', sans-serif;
+    font-weight: 700;
+}
+
+html {
+    font-size: 100%;
+} /* 16px */
+
+h1 {font-size: 4.210rem; /* 67.36px */}
+
+h2 {font-size: 3.158rem; /* 50.56px */}
+
+h3 {font-size: 2.369rem; /* 37.92px */}
+
+h4 {font-size: 1.777rem; /* 28.48px */}
+
+h5 {font-size: 1.333rem; /* 21.28px */}
+
+small {font-size: 0.750rem; /* 12px */}

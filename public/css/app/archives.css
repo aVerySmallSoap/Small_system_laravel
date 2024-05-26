@@ -1,0 +1,40 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.table-container{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 80vw;
+}
+
+#table-archive{
+    flex: 0 1;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 4px 1px rgba(94, 237, 171, 50%);
+    padding: 1rem;
+    overflow-y: auto;
+    max-height: 20vh;
+}
+
+#table-archive > tbody > tr > th{
+    font-size: 1.5rem;
+}
+
+#table-archive > tbody > tr > td:nth-child(1n){
+    text-align: center;
+}
+
+#table-archive > tbody > tr > td:nth-child(2){
+    width: 300px;
+    overflow-x: scroll;
+}
+
+#table-archive > tbody > tr > td{
+    padding: .4rem;
+}

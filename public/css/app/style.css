@@ -1,0 +1,61 @@
+#setting{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    position: sticky;
+    left: 90vw;
+    top: 85vh;
+    width: 48px;
+    height: 48px;
+    background-color: var(--app-primary);
+    transition: all 998ms ease-in-out;
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,25%);
+    cursor: pointer;
+}
+
+#context-menu{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    border: 1px solid rgba(0,0,0,20%);
+    border-radius: 1rem;
+    box-shadow: 2px 2px 4px 1px rgba(0,0,0,25%);
+    overflow-y: hidden;
+}
+
+#context-menu > * {
+    color: #4a5568;
+    font-size: 1rem;
+    padding: 0.4rem;
+}
+
+#context-menu > *:hover {
+    color: black;
+    font-weight: bold;
+    background-color: var(--app-seconday);
+    cursor: pointer;
+}
+
+@keyframes context-pop {
+    from{
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to{
+        opacity: 1;
+        transform: scaleY(100%);
+    }
+}
+
+@keyframes context-burst {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        height: 0;
+    }
+}

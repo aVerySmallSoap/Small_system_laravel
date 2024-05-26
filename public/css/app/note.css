@@ -1,0 +1,135 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+}
+
+.todo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wrapper{
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,20%);
+    border-radius: 1rem;
+    transition: all 500ms ease-in-out;
+}
+
+#list-header{
+    font-family: "Tenali Ramakrishna", sans-serif;
+    font-size: 3rem;
+    font-style: italic;
+    border-bottom: 1px solid rgba(0,0,0, 10%);
+    height: 3rem;
+    margin: 1rem;
+    transition: border-bottom-color 200ms ease;
+}
+
+#list-header:focus{
+    padding: .2rem;
+    border-bottom: 1px solid var(--app-accent);
+}
+
+.todo-list{
+    max-height: 50vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--app-primary) transparent;
+    transition: all 500ms ease-in-out;
+}
+
+.todo-list > li{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-edit{
+    font-family: "Tenali Ramakrishna", sans-serif;
+    outline: none;
+    border: none;
+}
+
+.todo-list > li > .text-edit{
+    font-size: 1.2rem;
+    flex:1;
+}
+
+.action-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem 3rem 0 3rem;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,20%);
+}
+
+.action-container > form{
+    display: flex;
+    padding-bottom: 1.2rem;
+    gap: 1rem;
+}
+
+.action-container > form > input{
+    flex: 1;
+    outline: none;
+    border: none;
+    transition: border-bottom-color 500ms ease, padding 1s ease-out;
+    border-bottom: 1px solid transparent;
+}
+
+.action-container > form > input:focus{
+    padding: .2rem;
+    border-bottom: 1px solid var(--app-accent);
+}
+
+.action-row{
+    flex: 1 0 100%;
+}
+
+button[id*="btn-"]{
+    font-size: 1rem;
+    font-family: "Tenali Ramakrishna", sans-serif;
+    padding: .4rem;
+    border-radius: 1rem;
+    border: none;
+}
+
+#btn-add{
+    background-color: var(--app-primary);
+    transition: background-color 250ms ease;
+}
+
+#btn-add:hover{
+    background-color: color-mix(in srgb, var(--app-primary) 100%, grey 30%);
+}
+
+#btn-delete{
+    background-color: var(--app-accent);
+    transition: background-color 250ms ease;
+}
+
+#btn-delete:hover{
+    background-color: darkred;
+    color: white;
+}
+
+@keyframes on-add {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes collapse {
+    from{
+        height: max-content;
+    }
+    to{
+        height: 0;
+    }
+}
