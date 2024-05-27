@@ -14,6 +14,7 @@ class Note extends Model
 
     protected $fillable = [
         'header_id',
+        'user_id',
         'note_sequence',
         'message',
         'note_isFinished'

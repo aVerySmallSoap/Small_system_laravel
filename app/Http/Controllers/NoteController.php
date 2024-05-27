@@ -24,6 +24,7 @@ class NoteController extends Controller
     function addHeader(Request $request){
         Header::create([
             'title' => $request['header'],
+            'user_id' => $request->user()->attributesToArray()['id'],
             'created_At' => date_create('now', timezone_open('Asia/Manila'))
         ]);
         return response()->json(['status' => 'success']);
@@ -47,6 +48,7 @@ class NoteController extends Controller
     function addNote(Request $request) {
         Note::create([
             'header_id' => $request['parent'],
+            'user_id' => $request->user()->attributesToArray()['id'],
             'note_sequence' => $request['sequence'],
             'message' => $request['content'],
             'note_isFinished' => false

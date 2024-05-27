@@ -15,6 +15,7 @@ class Header extends Model
 
     protected $fillable = [
         'title',
+        'user_id',
         'created_At'
     ];
 }

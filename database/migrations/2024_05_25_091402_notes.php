@@ -14,17 +14,24 @@ return new class extends Migration
     {
         Schema::create('headers', function (Blueprint $table) {
             $table->integer('header_id')->primary()->autoIncrement();
+            $table->unsignedBigInteger('user_id');
             $table->string('title')->index('idx_header_title');
             $table->timestamp('created_At');
+            $table->foreign('user_id', 'fk_headers_user_id')
+                ->references('id')->on('users');
         });
         Schema::create('notes', function (Blueprint $table) {
             $table->integer('header_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('note_sequence');
             $table->longText('message');
             $table->boolean('note_isFinished');
             $table->foreign('header_id', 'fk_notes_header_id')
                 ->references('header_id')
                 ->on('headers');
+            $table->foreign('user_id', 'fk_notes_user_id')
+                ->references('id')
+                ->on('users');
         });
         Schema::create('archived_notes', function (Blueprint $table){
             $table->integer('header_id');

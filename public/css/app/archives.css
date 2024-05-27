@@ -13,7 +13,6 @@ body{
     box-shadow: 1px 1px 4px 1px rgba(0,0,0,10%);
     padding: .4rem;
     overflow-y: auto;
-    overflow-x: hidden;
 }
 
 #table-archive{
@@ -34,7 +33,7 @@ body{
 
 #table-archive > tbody > tr > td:nth-child(2n){
     width: 300px;
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 
 #table-archive > tbody > tr > td{

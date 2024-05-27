@@ -37,7 +37,6 @@ function actions(parent){
     add.id = "context-add";
     add.setAttribute('focusable', 'true');
     add.onclick = function (e){
-        // add a modal to the page
         let temp_v = veil();
         document.body.append(temp_v);
     };
@@ -65,7 +64,7 @@ function actions(parent){
     logout.id = "context-logout";
     logout.setAttribute('focusable', 'true');
     logout.onclick = function (e){
-        document.location.href = '/home'
+        document.location.href = '/login'
     };
     parent.append(logout);
 }
