@@ -13,12 +13,13 @@ body{
     box-shadow: 1px 1px 4px 1px rgba(0,0,0,10%);
     padding: .4rem;
     overflow-y: auto;
+    min-width: 40%;
 }
 
 #table-archive{
     flex: 0 1;
     font-size: 1.25rem;
-    min-width: 300px;
+    min-width: 80%;
 }
 
 #table-archive > thead > tr > td{
@@ -82,9 +83,7 @@ body{
 }
 
 .crickets{
-    display: flex;
-    justify-content: center;
-    align-content: center;
     font-size: 1.25rem;
     font-family: "Tenali Ramakrishna", sans-serif;
+    column-span: 4;
 }

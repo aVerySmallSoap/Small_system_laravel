@@ -14,7 +14,7 @@
     <section class="hero">
         <div class="hero-wrapper">
             <span id="hero-title"> Take your <span class="color-one">lists</span> to the next <span class="color-two">level</span></span>
-            <div class="cta" onclick="document.location.href = '/registration'">Start listing</div>
+            <div class="cta" onclick="document.location.href = '/register'">Start listing</div>
         </div>
     </section>
 
