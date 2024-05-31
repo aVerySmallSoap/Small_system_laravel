@@ -26,5 +26,5 @@ Route::get('/login', [AuthenticationController::class, 'fetchLog']);
 Route::get('/register', [AuthenticationController::class, 'fetchReg']);
 Route::post('/auth/login', [AuthenticationController::class, 'login']);
 Route::post('/auth/register', [AuthenticationController::class, 'register']);
-
+Route::get('/', function () {return view('index');});
 

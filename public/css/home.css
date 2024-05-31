@@ -1,0 +1,77 @@
+body,
+html{
+    margin: 0;
+    height: 100%;
+}
+
+.hero{
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    align-content: center;
+}
+
+.hero-wrapper{
+    font-family: "Tenali Ramakrishna", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.hero-wrapper > * {
+    flex: 1 0 100%;
+}
+
+#hero-title{
+    font-size: 64px;
+    text-align: center;
+}
+
+.cta{
+    text-align: center;
+    background-color: #18A8D6;
+    font-size: 2.25rem;
+    color: white;
+    max-width: 240px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,25%);
+    transition: transform 200ms ease-in-out;
+}
+
+.cta:hover{
+    cursor: pointer;
+    transform: translateY(-4px);
+}
+
+.color-one{
+    color: #18A8D6;
+}
+.color-two{
+    color: #ff5500;
+}
+
+svg{
+    position: absolute;
+    bottom: 0;
+}
+
+#wave-middle{
+    z-index: -1;
+}
+
+#wave-back{
+    z-index: -2;
+}
+
+#wave-front > path {
+    fill: #ff5500;
+}
+
+#wave-middle > path{
+    fill: #D44700;
+}
+
+#wave-back > path{
+ fill: #913000;
+}
