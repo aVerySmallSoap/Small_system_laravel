@@ -32,7 +32,7 @@
                     <button type="submit" id="btn-add">Add note</button>
                 </form>
                 <div class="action-row">
-                    <button id="btn-delete" data-id="{{$title['header_id']}}">Archive</button>
+                    <button id="btn-delete" data-id="{{$title['header_id']}}">Clear list</button>
                 </div>
             </div>
         </div>

@@ -23,14 +23,20 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($notes as $note)
+            @if(!empty($notes))
+                @foreach($notes as $note)
+                    <tr>
+                        <td>{{$note->header_id}}</td>
+                        <td>{{$note->message}}</td>
+                        <td>@if($note->note_isFinished === 1) true @else false @endif</td>
+                        <td>{{$note->archived_At}}</td>
+                    </tr>
+                @endforeach
+            @else
                 <tr>
-                    <td>{{$note->header_id}}</td>
-                    <td>{{$note->message}}</td>
-                    <td>@if($note->note_isFinished === 1) true @else false @endif</td>
-                    <td>{{$note->archived_At}}</td>
+                    <td class="crickets" colspan="4">There are nothing here but crickets</td>
                 </tr>
-            @endforeach
+            @endif
             </tbody>
         </table>
         <div class="pagination">
