@@ -1,7 +1,7 @@
 document.querySelector('#btn-delete').addEventListener('click', evt => {
     evt.preventDefault();
     let list = {
-        parent: evt.target.dataset.id
+        id: evt.target.dataset.id
     };
     archive(list);
     todo.innerHTML = "";
@@ -9,7 +9,7 @@ document.querySelector('#btn-delete').addEventListener('click', evt => {
 });
 
 function archive(data) {
-    fetch('/list/archive', {
+    fetch('/note/clear', {
         method: 'POST',
         headers: {
             "X-CSRF-TOKEN": csrf.content,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Header;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -60,17 +61,21 @@ class NoteController extends Controller
     }
 
     function archive(Request $request){
-        if($request->getRequestUri() == '/list/archive'){
-            Note::where('header_id', $request['id'])->delete();
-            Header::where('header_id', $request['id'])->delete();
-        }else{
-            Note::where('header_id', $request['parent'])->delete();
-        }
+        Note::where('header_id', $request['id'])->delete();
+        Header::where('header_id', $request['id'])->delete();
+        return response()->json(['status' => 'success']);
+    }
+
+    function clear(Request $request){
+        Note::where('header_id', $request['id'])->delete();
         return response()->json(['status' => 'success']);
     }
 
     function collection(){
-        return view('collection', ['notes' => Header::all()]);
+        $id = Auth::user()['id'];
+        return view('collection', [
+            'notes' => Header::where('user_id', $id)->get()
+        ]);
     }
 
     function tick(Request $request){

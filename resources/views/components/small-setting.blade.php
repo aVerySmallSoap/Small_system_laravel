@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{asset('/css/app/style.css')}}">
 
-<div id="setting" onclick="context()">
+<div id="setting" onclick="context()" data-role="{{Auth::user()['role']}}">
     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="32" height="32"
          viewBox="0 0 48 48">
         <path

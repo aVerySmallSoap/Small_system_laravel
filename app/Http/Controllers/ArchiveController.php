@@ -18,7 +18,9 @@ class ArchiveController extends Controller
             'page' => $page,
             'next' => $next,
             'prev' => $prev,
-            'count' => DB::select('select * from number_of_archived')[0]
+            'count' => DB::select('select * from number_of_archived')[0],
+            'dash_notes' => DB::select('select * from dash_notes as notes')[0],
+            'dash_headers' => DB::select('select * from dash_headers as headers')[0]
         ]);
     }
 }

@@ -40,7 +40,7 @@
             </tbody>
         </table>
         <div class="pagination">
-            <span class="view">Total number of notes: {{$count->notes}}</span>
+            <span class="view">Total number of archived notes: {{$count->notes}}</span>
             @if($prev != 0)
                 <div class="prev" onclick="document.location.href = '/archives/{{$prev}}'">prev</div>
             @endif
@@ -50,6 +50,16 @@
                     next
                 </div>
             @endif
+        </div>
+    </div>
+    <div class="dashboard-container">
+        <div class="dashboard-category">
+            <span class="dash-header">Notes</span>
+            <span class="dash-info">{{$dash_notes->notes}}</span>
+        </div>
+        <div class="dashboard-category">
+            <span class="dash-header">Lists</span>
+            <span class="dash-info">{{$dash_headers->headers}}</span>
         </div>
     </div>
 <x-small-setting/>

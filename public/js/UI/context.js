@@ -51,15 +51,17 @@ function actions(parent){
     notes.onclick = function (e){
         document.location.href = '/notes'
     };
-    if(!document.documentURI.includes('/archives/1')){
-        parent.append(archives);
+    if(document.querySelector('#setting').dataset.role === "admin"){
+        archives.innerText = "Archives";
+        archives.id = "context-archive";
+        archives.setAttribute('focusable', 'true');
+        if(!document.documentURI.includes('/archives/1')){
+            parent.append(archives);
+        }
+        archives.onclick = function (e){
+            document.location.href = '/archives/1'
+        };
     }
-    archives.innerText = "Archives";
-    archives.id = "context-archive";
-    archives.setAttribute('focusable', 'true');
-    archives.onclick = function (e){
-        document.location.href = '/archives/1'
-    };
     logout.innerText = "Logout";
     logout.id = "context-logout";
     logout.setAttribute('focusable', 'true');

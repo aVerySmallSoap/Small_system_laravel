@@ -73,6 +73,16 @@ return new class extends Migration
             CREATE VIEW `number_of_archived` AS
             select count(*) as notes from archived_notes;
         ');
+
+        DB::statement('
+            create view dash_notes as
+            select count(*) as notes from notes as num_notes;
+        ');
+
+        DB::statement('
+            create view dash_headers as
+            select count(*) as headers from headers as num_headers;
+        ');
     }
 
     /**
