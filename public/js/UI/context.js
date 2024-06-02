@@ -33,7 +33,7 @@ function actions(parent){
     let notes = document.createElement('span');
     let archives = document.createElement('span');
     let logout = document.createElement('span');
-    add.innerText = "Add a note";
+    add.innerText = "New list";
     add.id = "context-add";
     add.setAttribute('focusable', 'true');
     add.onclick = function (e){
@@ -120,7 +120,7 @@ function modal(parent){
                 setTimeout(e => {
                     document.querySelector('.veil').remove();
                     document.location.reload();
-                }, 998);
+                }, 900);
             })// unhandled
     })
     cancel.className = "modal-cancel";

@@ -20,10 +20,10 @@ Route::middleware(user::class)->group(function (){
     Route::get('/logout', function (){
        Auth::logout();
     });
+    Route::post('/note/clear', [NoteController::class, 'clear']);
 
     Route::middleware(admin::class)->group(function (){
         Route::get('/archives/{page}', [ArchiveController::class, 'fetch']);
-        Route::post('/note/clear', [NoteController::class, 'clear']);
     });
 });
 
