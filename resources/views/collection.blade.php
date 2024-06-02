@@ -14,6 +14,7 @@
 </head>
 <body>
 
+    <x-navigation/>
     <div class="collection-container">
         @foreach($notes as $note)
             <div class="card-container" onclick="document.location.href = '/note/{{$note['header_id']}}'">
@@ -24,7 +25,6 @@
             </div>
         @endforeach
     </div>
-
     <x-small-setting/>
 
     <script src="{{asset('/js/UI/collections.js')}}"></script>

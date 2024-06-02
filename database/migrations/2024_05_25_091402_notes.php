@@ -12,13 +12,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id('category_id');
+            $table->string('category_name');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id', 'fk_categories_user_id')
+                ->references('id')
+                ->on('users');
+        });
         Schema::create('headers', function (Blueprint $table) {
             $table->integer('header_id')->primary()->autoIncrement();
+            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->string('title')->index('idx_header_title');
             $table->timestamp('created_At');
             $table->foreign('user_id', 'fk_headers_user_id')
                 ->references('id')->on('users');
+            $table->foreign('category_id', 'fk_headers_category_id')
+                ->references('category_id')
+                ->on('categories');
         });
         Schema::create('notes', function (Blueprint $table) {
             $table->integer('header_id');
@@ -94,5 +106,6 @@ return new class extends Migration
         Schema::dropIfExists('update_history');
         Schema::dropIfExists('notes');
         Schema::dropIfExists('header');
+        Schema::dropIfExists('categories');
     }
 };

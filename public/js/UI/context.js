@@ -86,6 +86,32 @@ function veil(){
 }
 
 function modal(parent){
+    let selectLabel = document.createElement("span");
+    let select = document.createElement("select");
+    select.name = "category";
+    selectLabel.className = "select-label";
+    selectLabel.innerText = "Category";
+    fetch('/fetch/categories', {
+        method: 'get',
+        headers: {
+            "X-CSRF-TOKEN": csrf.content,
+            "X-Requested-With": 'XMLHttpRequest',
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            for (const value of data.items) {
+                let option = document.createElement("option");
+                option.value = value.category_id;
+                option.text = value.category_name;
+                if(document.querySelector("meta[name=category]") != null &&
+                document.querySelector("meta[name=category]").content == value.category_id){
+                    option.setAttribute("selected", true);
+                }
+                select.append(option);
+            }
+        });
     let modal = document.createElement('div');
     let label = document.createElement('span');
     let input = document.createElement('input');
@@ -102,7 +128,7 @@ function modal(parent){
     add.innerText = "Add"
     add.addEventListener('click', e => {
         let input = document.querySelector('.modal>input').value;
-        let list = {header: input};
+        let list = {header: input, category: select.value};
         fetch('/list/insert', {
             method: 'POST',
             headers: {
@@ -129,6 +155,8 @@ function modal(parent){
     modal.style.animationDelay = "500ms";
     modal.style.animation = "'modal-drop' 1s ease-out";
     modal.append(label);
+    modal.append(selectLabel);
+    modal.append(select);
     modal.append(input);
     row.append(cancel, add);
     modal.append(row);

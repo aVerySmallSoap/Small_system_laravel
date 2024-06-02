@@ -20,6 +20,12 @@ Route::middleware(user::class)->group(function (){
     Route::get('/logout', function (){
        Auth::logout();
     });
+
+    Route::get('/category/{id}', [NoteController::class, 'fetchCat']);
+    Route::get('/category/archive/{id}', [NoteController::class, 'archiveCat']);
+    Route::get('/add/category', [NoteController::class, 'addCat']);
+    Route::get('/fetch/categories', [NoteController::class, 'helperCat']);
+    Route::post('/category/add', [NoteController::class, 'insertCat']);
     Route::post('/note/clear', [NoteController::class, 'clear']);
 
     Route::middleware(admin::class)->group(function (){
@@ -33,3 +39,4 @@ Route::post('/auth/login', [AuthenticationController::class, 'login']);
 Route::post('/auth/register', [AuthenticationController::class, 'register']);
 Route::get('/', function () {return view('index');});
 
+//helper

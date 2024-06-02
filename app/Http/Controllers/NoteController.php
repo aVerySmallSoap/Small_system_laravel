@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Header;
 use App\Models\Note;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ class NoteController extends Controller
         Header::create([
             'title' => $request['header'],
             'user_id' => $request->user()->attributesToArray()['id'],
+            'category_id' => $request['category'],
             'created_At' => date_create('now', timezone_open('Asia/Manila'))
         ]);
         return response()->json(['status' => 'success']);
@@ -84,5 +86,40 @@ class NoteController extends Controller
             ->update([
                 'note_isFinished' => $request['value']
             ]);
+    }
+
+    function addCat(){
+        return view('category.add');
+    }
+
+    function insertCat(Request $request){
+        Category::create([
+            'user_id' => Auth::user()['id'],
+            'category_name' => $request['category']
+        ]);
+        $returning = Category::where('user_id', Auth::user()['id'])->where('category_name', $request['category'])->get();
+        return response()->json(['status' => 'success', 'id' => $returning]);
+    }
+
+    function helperCat(){
+        $json = Category::where('user_id', Auth::user()['id'])->get();
+        return response()->json(['items' => $json]);
+    }
+
+    function fetchCat(int $id){
+        return view('category.index', [
+            'category' => $id,
+            'lists' => Header::where('category_id', $id)->where('user_id', Auth::user()['id'])->get()
+        ]);
+    }
+
+    function archiveCat(int $id){
+        $headers = Header::where('category_id', $id)->get();
+        foreach ($headers as $list){
+            Note::where('header_id', $list['header_id'])->delete();
+        }
+        Header::where('category_id', $id)->delete();
+        Category::destroy($id);
+        return response()->redirectToIntended('/notes');
     }
 }

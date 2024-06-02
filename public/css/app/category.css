@@ -2,7 +2,7 @@ body{
     display: flex;
 }
 
-.collection-container{
+.category-container{
     flex: 0 0 50%;
     display: grid;
     grid-template-columns: repeat(5, 200px);
@@ -55,4 +55,31 @@ body{
 .archive:hover{
     background-color: red;
     cursor: pointer;
+}
+
+.action{
+    padding: .4rem;
+}
+
+.action > button {
+    font-family: "Tenali Ramakrishna", sans-serif;
+    font-size: 1.2rem;
+    border-radius: .4rem;
+    border: none;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,10%);
+    background-color: var(--app-primary);
+    color: white;
+    padding: .4rem;
+    transition: all 200ms;
+    margin: 1rem;
+}
+
+.action > button:hover {
+    background-color: darkred;
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+.action > #btn-add:hover {
+    background-color: cornflowerblue;
 }
