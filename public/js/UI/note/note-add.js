@@ -25,6 +25,7 @@ form.addEventListener('submit', evt => {
         .then(response => response.json())
         .then(data => {
             refreshUI(data);
+            document.querySelector('#message').value = "";
         });
 })
 
