@@ -47,6 +47,6 @@ function refreshUI(data){
     text.addEventListener('focusout', evt => eventOnEdit(evt));
     row.append(check, text);
     todo.append(row);
-    row.style.animation = "'on-add' 500ms ease-in-out";
+    row.style.animation = "on-add 500ms ease-in-out";
     setTimeout(e => {wrapper.style.transform = ""}, 1000)
 }
