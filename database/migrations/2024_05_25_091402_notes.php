@@ -12,6 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropAllViews();
         Schema::create('categories', function (Blueprint $table) {
             $table->id('category_id');
             $table->string('category_name');
@@ -51,6 +52,11 @@ return new class extends Migration
             $table->boolean('note_isFinished');
             $table->timestamp('archived_At');
         });
+
+        DB::statement('drop view if exists `number_of_archived`');
+        DB::statement('drop procedure if exists `getAttachedNotes`');
+        DB::statement('drop procedure if exists `paginate_archive`');
+
         DB::statement("
             CREATE TRIGGER `notes_BEFORE_DELETE` BEFORE DELETE ON `notes`
             FOR EACH ROW
@@ -69,6 +75,24 @@ return new class extends Migration
                 );
             END"
         );
+
+        DB::statement('
+            create view dash_notes as
+            select count(*) as notes from notes as num_notes;
+        ');
+
+        DB::statement('
+            create view dash_headers as
+            select count(*) as headers from headers as num_headers;
+        ');
+
+        DB::statement('
+            CREATE VIEW `number_of_archived` AS
+            select count(*) as notes from archived_notes;
+        ');
+
+
+        //stored procedures
         DB::statement(
             'CREATE PROCEDURE `getAttachedNotes`(IN header_id int)
             begin
@@ -81,20 +105,6 @@ return new class extends Migration
                 select * from archived_notes limit v_limit offset v_offset;
             END
         ');
-        DB::statement('
-            CREATE VIEW `number_of_archived` AS
-            select count(*) as notes from archived_notes;
-        ');
-
-        DB::statement('
-            create view dash_notes as
-            select count(*) as notes from notes as num_notes;
-        ');
-
-        DB::statement('
-            create view dash_headers as
-            select count(*) as headers from headers as num_headers;
-        ');
     }
 
     /**
@@ -102,6 +112,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('users');
         Schema::dropIfExists('archived_notes');
         Schema::dropIfExists('update_history');
         Schema::dropIfExists('notes');
